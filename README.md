@@ -23,6 +23,7 @@ ________________________________________________________________________________
 - [Task 6: Performing DO188 Guided Exercises](#task-6-performing-do188-guided-exercises)
   - [Chapter 2](#chapter-2)
   - [Chapter 3](#chapter-3)
+- [Conclusion](#conclusion)
 _____________________________________________________________________________________      
 <div align="center">
    
@@ -850,5 +851,78 @@ The objective of this particular Guide exercise was to help me to peform the fol
 
 In order to prepare the system for this exercise, I ran the `lab start images-managing` command for creating a copy of ContainerFile that is used for building simple-server image. 
 
-------------------------------------
+## **2.1. Verifying Absence Of Server Image**
 
+Under this sub-task, I was to verify whether some server image was present on my machine or not. This was done by running the `podman image ls --format "{{.Repository}}"` command, whose empty output signified the absence of any server image on my machine.
+
+## **2.2. Building Simple-Server Image**
+For creating and running a simple-server image called from the `~/DO188/labs/images-managing/Containerfile file` in the Red Hat Workstation, I needed to first ener into the `images-managing` directory using the `cd ~/DO188/labs/images-managing` command. 
+
+In order to create the image, I utilised the Containerfile with the `podman build -t` command for tagging the container as `simple-server`. This was done using the following commands:
+```
+podman build -f Containerfile -t \
+simple-server
+```
+Output:
+<div align="center">
+![image](https://i.imgur.com/eB1U56g.png)
+</div>
+
+Using the commands provided above, I was able to sucessfuly create the image for `simple-server`. In order to verify as to whether this image had been created, I ran the `podman image ls` command, where I was able to find this image. Given that I had created an image as per the requirements, I could now also create its container using the following command:
+```
+podman run -d \
+  -p 8080:8000 \
+  --name http-server \
+  simple-server
+```
+Output:
+<div align="center">
+![image](https://i.imgur.com/Hl6CQiI.png)
+</div>
+
+In order to verify as to whether the above container was indeed running or not, I ran the `curl http://localhost:8080/hello.html` command to retrieve the message in the hello.html file which was `curl http://localhost:8080/hello.html`.
+
+## **2.3. Viewing Image's Default Commands**
+> Inspect the simple-server image to see which command it runs by default.
+
+As per this sub-task, we were to verify that python -m http.server was the default command for the simple-server image. In order to do so, I ran the following `inspect` command:
+```
+podman image inspect simple-server \
+  --format="{{.Config.Cmd}}"
+```
+Output:
+<div align="center">
+![image](https://i.imgur.com/lRTwV1E.png)
+</div>
+
+Based on the output provided above, I was able to successfuly verify that the default command that was run was the python command indeed.
+
+## **2.4. Tagging Container Images**
+> Tag the simple-server image with the 0.1 tag and list the images to verify the result.
+
+Tagging in Podman enables us to create one kind of a copy but with a different tag for helping with differentiating it. The command for tagging the simple-server container image is as follows: 
+```
+podman image tag simple-server \
+simple-server:0.1
+``` 
+Output:
+<div align="center">
+![image](https://i.imgur.com/2kZMlOG.png)
+</div>
+
+In order to ensure that the change had indeed taken place, I also ran the `podman image ls` command which displayed all the container images, along with their tags.
+
+## **2.5. Removing Container Image**
+> Tag the simple-server image with the 0.1 tag and list the images to verify the result.
+
+There are three methods that I implemented for deleting the simple-server container image. The first one included running the `podman image rm simple-server` command for removing simple-server's container image with the latest tag since not specifying the tag would only lead to only simple-server. However, if the tag was to be defined with `podman image rm simple-server:0.1` then we would be able to remove the image with the `0.1` tag too. But I was unable to delete the image due to it running in the background.
+
+Therefore, for a forced container image deletion, running the following command proved to be the most beneficial and efficient:
+```
+`podman image rm -f simple-server:0.1` 
+```
+Output:
+<div align="center">
+![image](https://i.imgur.com/dtGeJjv.png)
+</div>
+____________________
