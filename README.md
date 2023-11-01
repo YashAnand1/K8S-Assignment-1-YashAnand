@@ -883,7 +883,9 @@ podman run -d \
 Output:
 
 <div align="center">
-![image](https://i.imgur.com/Hl6CQiI.png)
+
+  ![image](https://i.imgur.com/Hl6CQiI.png)
+
 </div>
 
 In order to verify as to whether the above container was indeed running or not, I ran the `curl http://localhost:8080/hello.html` command to retrieve the message in the hello.html file which was `curl http://localhost:8080/hello.html`.
@@ -899,7 +901,9 @@ podman image inspect simple-server \
 Output:
 
 <div align="center">
-![image](https://i.imgur.com/lRTwV1E.png)
+
+  ![image](https://i.imgur.com/lRTwV1E.png)
+
 </div>
 
 Based on the output provided above, I was able to successfuly verify that the default command that was run was the python command indeed.
@@ -915,7 +919,9 @@ simple-server:0.1
 Output:
 
 <div align="center">
-![image](https://i.imgur.com/2kZMlOG.png)
+
+  ![image](https://i.imgur.com/2kZMlOG.png)
+
 </div>
 
 In order to ensure that the change had indeed taken place, I also ran the `podman image ls` command which displayed all the container images, along with their tags.
@@ -932,6 +938,9 @@ Therefore, for a forced container image deletion, running the following command 
 Output:
 
 <div align="center">
-![image](https://i.imgur.com/dtGeJjv.png)
+
+  ![image](https://i.imgur.com/dtGeJjv.png)
+
 </div>
+
 ____________________
