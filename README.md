@@ -782,6 +782,7 @@ podman login -u developer -p developer \
   registry.ocp4.example.com:8443
 ``` 
 The output of all the commands mentioned above was as follows:
+
 <div align="center">
 
 ![image](https://i.imgur.com/D82Fsr5.png)
@@ -801,6 +802,7 @@ docker://${RHOCP_REGISTRY}/default/python:3.9-ubi8 \
 docker://registry.ocp4.example.com:8443/developer/python:3.9-ubi8
 ```
 Output:
+
 <div align="center">
 
 ![image](https://i.imgur.com/T4IvjhS.png)
@@ -809,6 +811,7 @@ Output:
 ## **1.3 Making Image Public**
 
 Despite the image container not being able to copied, I decided to look into how in the internal registry, an image could be made public. To do so, I opened `https://registry.ocp4.example.com:8443` in my Red Hat Workstation. Once the website had been opened, I logged into it using `developer` as password and username:
+
 <div align="center">
 
 ![image](https://i.imgur.com/c3aiqPM.png)
@@ -829,6 +832,7 @@ podman run --rm \
 Since the above image had not been made public in the previous section, I was displayed the `Unauthorised` error. In order to start the image that was supposed to be pulled in the output provided above, the second command was ran by me to start the container but since the image had not been pulled due to not being public, I was unable to carry out this task.
 
 Output:
+
 <div align="center">
 ![image](https://i.imgur.com/a2PMoPK.png)
 </div>
@@ -864,6 +868,7 @@ podman build -f Containerfile -t \
 simple-server
 ```
 Output:
+
 <div align="center">
 ![image](https://i.imgur.com/eB1U56g.png)
 </div>
@@ -876,6 +881,7 @@ podman run -d \
   simple-server
 ```
 Output:
+
 <div align="center">
 ![image](https://i.imgur.com/Hl6CQiI.png)
 </div>
@@ -891,6 +897,7 @@ podman image inspect simple-server \
   --format="{{.Config.Cmd}}"
 ```
 Output:
+
 <div align="center">
 ![image](https://i.imgur.com/lRTwV1E.png)
 </div>
@@ -906,6 +913,7 @@ podman image tag simple-server \
 simple-server:0.1
 ``` 
 Output:
+
 <div align="center">
 ![image](https://i.imgur.com/2kZMlOG.png)
 </div>
@@ -922,6 +930,7 @@ Therefore, for a forced container image deletion, running the following command 
 `podman image rm -f simple-server:0.1` 
 ```
 Output:
+
 <div align="center">
 ![image](https://i.imgur.com/dtGeJjv.png)
 </div>
