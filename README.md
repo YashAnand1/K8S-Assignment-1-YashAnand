@@ -872,7 +872,9 @@ simple-server
 Output:
 
 <div align="center">
-![image](https://i.imgur.com/eB1U56g.png)
+
+  ![image](https://i.imgur.com/eB1U56g.png)
+  
 </div>
 
 Using the commands provided above, I was able to sucessfuly create the image for `simple-server`. In order to verify as to whether this image had been created, I ran the `podman image ls` command, where I was able to find this image. Given that I had created an image as per the requirements, I could now also create its container using the following command:
