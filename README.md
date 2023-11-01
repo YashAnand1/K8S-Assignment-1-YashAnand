@@ -834,7 +834,9 @@ Since the above image had not been made public in the previous section, I was di
 Output:
 
 <div align="center">
+  
 ![image](https://i.imgur.com/a2PMoPK.png)
+
 </div>
 
 In order to finish this lab session on my Red Hat workstation, I ran the command of `lab finish images-basics`.
